@@ -1,3 +1,22 @@
+https://github.com/devender-k/lav-farm-pro
+
+https://lav-farm-pro.onrender.com
+
+https://lav-farm-pro.onrender.com/?portal=user
+
+👤 User Portal (Share with Farmers / Public):
+👉 https://solutions-pda-holiday-marine.trycloudflare.com/?portal=user
+
+👑 Admin Portal (Management & Prescriptions):
+👉 https://solutions-pda-holiday-marine.trycloudflare.com/?role=admin
+
+👤 Permanent User Portal (24/7):
+👉 https://lav-farm-pro.onrender.com/?portal=user
+
+👑 Permanent Admin Portal (24/7):
+👉 https://lav-farm-pro.onrender.com/?role=admin
+
+//
 ================================================================================
 🌾 FARM PRO - POWERED BY LAVKUSH (OFFICIAL ACCESS LINKS)
 ================================================================================
