@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farm Pro - Powered by Lavkush | Smart Farming & Plant Health</title>
+  <meta name="description" content="Farm Pro powered by Lavkush: Smart AI plant scanner, disease diagnosis, crop care, dual User/Admin portal and native app launcher.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div id="announcement-banner" class="announcement-bar">
+    <div class="announcement-content">
+      <span class="pulse-dot"></span>
+      <span id="announcement-text" data-i18n="announcement_text">🌾 Welcome to Farm Pro Web Portal! AI Plant Scanner and Full Voice Assistant now online.</span>
+    </div>
+    <div class="network-badges-group">
+      <div class="network-badge worldwide-badge" id="worldwide-badge" title="Permanent Worldwide Link accessible from any smartphone, tablet, or PC">
+        <i class="fa-solid fa-earth-americas text-emerald"></i>
+        <span id="worldwide-link-display">Worldwide: https://solutions-pda-holiday-marine.trycloudflare.com</span>
+        <button class="btn-copy-link btn-copy-worldwide" id="btn-copy-worldwide" onclick="copyWorldwideLink()" data-i18n="copy_worldwide_btn">
+          <i class="fa-solid fa-globe"></i> Copy Global Link
+        </button>
+      </div>
+      <div class="network-badge" id="network-badge" title="Share with any device on your Wi-Fi/LAN">
+        <i class="fa-solid fa-wifi"></i>
+        <span id="network-link-display">Wi-Fi: http://192.168.1.57:3000</span>
+        <button class="btn-copy-link" id="btn-copy-link" onclick="copyNetworkLink()" data-i18n="copy_wifi_btn">
+          <i class="fa-regular fa-copy"></i> Copy Wi-Fi
+        </button>
+      </div>
+      <button class="btn-copy-link voice-indicator-btn" id="btn-voice-indicator" onclick="speechCtrl.stop()" title="Voice Speaking Active - Click to Stop/Mute">
+        <i class="fa-solid fa-volume-high text-emerald"></i> <span data-i18n="voice_label">Voice:</span> <span id="voice-indicator-status">Ready</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Header Navigation -->
+  <header class="main-header">
+    <div class="header-container">
+      <div class="brand-group">
+        <div class="brand-logo">
+          <img src="images/chatl_avatar.jpg" alt="Farm Pro Logo" class="logo-img">
+          <span class="logo-glow"></span>
+        </div>
+        <div class="brand-text">
+          <div class="brand-title">
+            <span class="title-farm">Farm</span><span class="title-pro">Pro</span>
+            <span class="badge-version">v2.5 Web</span>
+          </div>
+          <div class="brand-subtitle">
+            <span class="power-prefix">POWERED BY</span>
+            <a href="https://lav-tech.blogspot.com" target="_blank" class="power-name-link" title="Visit Lavkush's Official Portal (lav-tech.blogspot.com)">
+              <img src="images/lavkush_portrait.png" alt="Lavkush" class="lavkush-header-avatar">
+              <span class="power-name" id="brand-powered-by">LAVKUSH</span>
+              <i class="fa-solid fa-arrow-up-right-from-square power-ext-icon"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="nav-menu" id="nav-menu">
+        <a href="#hero" class="nav-link active" data-section="hero"><i class="fa-solid fa-house"></i> <span data-i18n="nav_home">Home</span></a>
+        <a href="#scanner" class="nav-link" data-section="scanner"><i class="fa-solid fa-camera-viewfinder"></i> <span data-i18n="nav_scanner">AI Scanner</span></a>
+        <a href="#requests" class="nav-link" data-section="requests"><i class="fa-solid fa-clipboard-list"></i> <span data-i18n="nav_requests">Requests</span> <span class="badge-count" id="nav-request-count">3</span></a>
+        <a href="#diseases" class="nav-link" data-section="diseases"><i class="fa-solid fa-book-medical"></i> <span data-i18n="nav_diseases">Plant Doctor</span></a>
+        <a href="#fertilizers" class="nav-link" data-section="fertilizers"><i class="fa-solid fa-flask-vial"></i> <span data-i18n="nav_fertilizers">Fertilizers</span></a>
+        <a href="#chatl" class="nav-link" data-section="chatl"><i class="fa-solid fa-comments"></i> <span data-i18n="nav_chatl">ChatL AI</span></a>
+        <a href="#launcher" class="nav-link" data-section="launcher"><i class="fa-solid fa-rocket"></i> <span data-i18n="nav_launcher">App Launcher</span></a>
+      </nav>
+
+      <!-- Language Switcher & Role Actions -->
+      <div class="header-actions">
+        <!-- Language Switcher: English <-> हिन्दी -->
+        <div class="lang-selector-pill" id="lang-selector-pill" title="भाषा चुनें / Select Language">
+          <button type="button" class="lang-btn active" id="btn-lang-en" onclick="setLanguage('en')">
+            <span class="lang-flag">🇬🇧</span> <span class="lang-text">English</span>
+          </button>
+          <button type="button" class="lang-btn" id="btn-lang-hi" onclick="setLanguage('hi')">
+            <span class="lang-flag">🇮🇳</span> <span class="lang-text">हिन्दी</span>
+          </button>
+        </div>
+
+        <div class="role-selector-pill" id="role-selector-pill">
+          <button type="button" class="role-btn active" id="btn-user-mode" onclick="switchRole('user')">
+            <i class="fa-solid fa-user"></i>
+            <span data-i18n="user_mode_btn">User Mode</span>
+          </button>
+          <button type="button" class="role-btn" id="btn-admin-mode" onclick="switchRole('admin')">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span data-i18n="admin_mode_btn">Admin Mode</span>
+          </button>
+        </div>
+
+        <button type="button" class="btn-sm btn-outline-warning admin-only-btn" id="btn-header-change-pass" style="display:none;" onclick="openChangePasswordModal()" title="Change Admin Password (Default: admin123)">
+          <i class="fa-solid fa-key"></i> <span data-i18n="change_pass_btn">Change Password</span>
+        </button>
+
+        <button class="mobile-nav-toggle" id="mobile-toggle" aria-label="Toggle navigation">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Role Status Bar (Indicates what user can do vs admin rights) -->
+  <div class="role-status-strip" id="role-status-strip">
+    <div class="container role-status-inner">
+      <div class="role-indicator user-indicator" id="role-indicator">
+        <i class="fa-solid fa-circle-info"></i>
+        <span id="role-message">
+          <strong>User Mode Active:</strong> You can browse all crops, perform live AI plant scans, chat with ChatL AI, and submit diagnosis requests.
+        </span>
+      </div>
+      <div class="role-quick-action" id="role-action-wrapper">
+        <button class="btn-sm btn-outline-emerald" onclick="switchRole('admin')">
+          <i class="fa-solid fa-key"></i> <span data-i18n="switch_to_admin">Switch to Admin</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section id="hero" class="hero-section">
+      <div class="hero-bg-overlay"></div>
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="hero-pill">
+            <span class="live-dot"></span>
+            <span data-i18n="hero_pill">NEXT-GEN SMART AGRICULTURE ECOSYSTEM</span>
+          </div>
+          <h1 class="hero-headline">
+            <span data-i18n="hero_title_prefix">Farm Pro AI Assistant</span> <br>
+            <span class="gradient-text" data-i18n="hero_title_suffix">Powered by Lavkush</span>
+          </h1>
+          <p class="hero-desc" data-i18n="hero_desc">
+            Instant leaf disease detection, scientific fertilizer calculation, intelligent ChatL AI, and dual Admin-User farm management. Connect directly to the FarmCare Pro desktop app or run online diagnostics from any phone or PC.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#scanner" class="btn btn-primary btn-glow">
+              <i class="fa-solid fa-qrcode"></i> <span data-i18n="hero_btn_scan">Scan Leaf Now</span>
+            </a>
+            <a href="#chatl" class="btn btn-secondary">
+              <i class="fa-solid fa-comments"></i> <span data-i18n="hero_btn_chatl">Open ChatL AI</span>
+            </a>
+            <a href="#launcher" class="btn btn-glass">
+              <i class="fa-solid fa-terminal"></i> <span data-i18n="hero_btn_admin">Admin Hub</span>
+            </a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat-item">
+              <div class="stat-number">10+</div>
+              <div class="stat-label" data-i18n="stat_models">Disease Models</div>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <div class="stat-number">98.4%</div>
+              <div class="stat-label" data-i18n="stat_precision">AI Precision</div>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <div class="stat-number">2-in-1</div>
+              <div class="stat-label" data-i18n="stat_modes">Bilingual (Eng / हिंदी)</div>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <div class="stat-number">2,400+</div>
+              <div class="stat-label" data-i18n="stat_farmers">Active Farmers</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="visual-card-glass">
+            <div class="visual-badge-top">
+              <span class="badge-dot green"></span> Live System Online
+            </div>
+            <img src="images/hero_banner.jpg" alt="Smart Greenhouse AI Diagnostic Screen" class="hero-main-img">
+            <div class="visual-floating-card top-right-card">
+              <div class="card-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+              <div class="card-info">
+                <span class="c-title">Health Check</span>
+                <span class="c-val text-emerald">96% Optimal</span>
+              </div>
+            </div>
+            <div class="visual-floating-card bottom-left-card">
+              <div class="card-icon"><i class="fa-solid fa-robot"></i></div>
+              <div class="card-info">
+                <span class="c-title">ChatL Engine</span>
+                <span class="c-val text-amber">Online Specialist</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 1: AI PLANT SCANNER (User & Admin Instant Tool) -->
+    <section id="scanner" class="section-padding scanner-section">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="section-badge"><i class="fa-solid fa-microchip"></i> <span data-i18n="scanner_badge">SMART DISEASE DETECTOR</span></div>
+          <h2 class="section-title" data-i18n="scanner_title">AI Leaf Disease Scanner</h2>
+          <p class="section-subtitle" data-i18n="scanner_subtitle">
+            Upload a photo of your affected crop leaf, use Live Camera, or pick a sample below. Our neural vision engine diagnoses fungal, bacterial, and pest attacks in seconds.
+          </p>
+        </div>
+
+        <div class="scanner-wrapper">
+          <div class="scanner-card upload-panel">
+            <div class="panel-header">
+              <h3><i class="fa-solid fa-cloud-arrow-up"></i> <span data-i18n="scanner_panel_title">Upload or Live Camera Scan</span></h3>
+              <div class="panel-tools">
+                <button type="button" class="btn btn-sm btn-outline-emerald" id="btn-toggle-camera" onclick="toggleLiveCamera()">
+                  <i class="fa-solid fa-camera"></i> <span data-i18n="scanner_camera_btn">Live Camera</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Drag and Drop / Live Camera Area -->
+            <div class="drop-zone" id="drop-zone" onclick="handleDropZoneClick(event)">
+              <input type="file" id="scanner-file-input" accept="image/*" style="display:none" onchange="handleScannerFileSelect(event)">
+              
+              <!-- Standard Drop Content -->
+              <div class="drop-zone-content" id="drop-zone-content">
+                <div class="drop-icon"><i class="fa-solid fa-leaf"></i></div>
+                <div class="drop-title" data-i18n="drop_title">Click to upload, drag & drop, or click Live Camera</div>
+                <div class="drop-hint" data-i18n="drop_hint">Supports JPG, PNG, WEBP from Phone or PC</div>
+              </div>
+
+              <!-- Live Camera Stream Viewfinder -->
+              <div class="camera-stream-container" id="camera-stream-container" style="display:none">
+                <video id="scanner-video-feed" autoplay playsinline muted></video>
+                <div class="camera-reticle">
+                  <div class="reticle-corner top-left"></div>
+                  <div class="reticle-corner top-right"></div>
+                  <div class="reticle-corner bottom-left"></div>
+                  <div class="reticle-corner bottom-right"></div>
+                  <span class="reticle-text" data-i18n="camera_target_leaf">TARGET AFFECTED LEAF</span>
+                </div>
+                <div class="camera-controls-bar">
+                  <button type="button" class="btn btn-sm btn-glass" onclick="stopLiveCamera(event)" data-i18n="camera_cancel">Cancel Camera</button>
+                  <button type="button" class="btn btn-sm btn-primary btn-glow" onclick="captureCameraSnapshot(event)">
+                    <i class="fa-solid fa-camera"></i> <span data-i18n="camera_snap">Snap Photo & Diagnose</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Static/Captured Preview Container (Hidden by default until sample or upload) -->
+              <div class="preview-container" id="preview-container" style="display:none">
+                <img id="scanner-preview-img" src="" alt="Selected Plant Scan" class="preview-image">
+                <div class="scan-radar-overlay" id="scan-radar-overlay">
+                  <div class="radar-line"></div>
+                  <div class="scan-hud-box">AI ANALYZING...</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quick Sample Picker -->
+            <div class="quick-samples">
+              <span class="sample-label" data-i18n="scanner_sample_label">Or test with ready crop samples:</span>
+              <div class="sample-chips">
+                <button type="button" class="chip-btn" id="chip-sample-tomato" onclick="loadSample('tomato')" data-i18n="sample_tomato">
+                  🍅 Tomato Early Blight
+                </button>
+                <button type="button" class="chip-btn" id="chip-sample-powdery" onclick="loadSample('powdery')" data-i18n="sample_powdery">
+                  🌿 Powdery Mildew
+                </button>
+                <button type="button" class="chip-btn" id="chip-sample-aphids" onclick="loadSample('aphids')" data-i18n="sample_aphids">
+                  🐛 Pest Aphids
+                </button>
+                <button type="button" class="chip-btn" id="chip-sample-healthy" onclick="loadSample('healthy')" data-i18n="sample_healthy">
+                  ✨ Healthy Leaf (98%)
+                </button>
+              </div>
+            </div>
+
+            <div class="scanner-inputs">
+              <div class="form-row">
+                <div class="form-group flex-1">
+                  <label for="scan-crop-select" data-i18n="crop_name_label">Crop Name</label>
+                  <select id="scan-crop-select" class="form-control">
+                    <option value="Tomato">Tomato (Solanum lycopersicum)</option>
+                    <option value="Wheat">Wheat (Triticum aestivum)</option>
+                    <option value="Rice">Rice / Paddy</option>
+                    <option value="Cotton">Cotton</option>
+                    <option value="Potato">Potato</option>
+                    <option value="Corn">Maize / Corn</option>
+                    <option value="Apple">Apple / Orchard</option>
+                    <option value="Other">Other Vegetable/Fruit</option>
+                  </select>
+                </div>
+                <div class="form-group flex-2">
+                  <label for="scan-symptoms-input" data-i18n="symptoms_label">Observed Symptoms (Type or Speak)</label>
+                  <div class="input-with-mic-wrap">
+                    <input type="text" id="scan-symptoms-input" class="form-control" placeholder="e.g. brown concentric spots, yellow edges" data-i18n-placeholder="symptoms_placeholder">
+                    <button type="button" class="btn-input-mic" id="btn-mic-symptoms" onclick="voiceCtrl.toggle('scan-symptoms-input', 'btn-mic-symptoms')" title="Click & Speak Symptoms (Microphone)">
+                      <i class="fa-solid fa-microphone"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Dynamic Live Organic Plant Suggestion Card (Updates as crop/symptoms change) -->
+              <div class="crop-organic-hint-card" id="crop-organic-hint-card">
+                <div class="hint-header">
+                  <div class="hint-title-wrap">
+                    <i class="fa-solid fa-seedling text-emerald-glow"></i>
+                    <strong id="crop-organic-hint-title" data-i18n="crop_organic_hint_title">🌱 Live Organic Suggestion for Selected Crop:</strong>
+                  </div>
+                  <span class="hint-badge" data-i18n="organic_badge_pill">100% Organic</span>
+                </div>
+                <div class="hint-body" id="crop-organic-hint-body">
+                  • <strong>Anti-Fungal Foliar Spray:</strong> Spray fermented Sour Buttermilk (50ml/L) stored with copper to prevent fungal blight.<br>
+                  • <strong>Soil & Roots:</strong> Enrich base with 250g Vermicompost + 50g Neem cake to build systemic resistance.<br>
+                  • <strong>Plant Care:</strong> Irrigate strictly at root level early morning and mulch bed with dry straw.
+                </div>
+              </div>
+
+              <!-- Animated Organic Suggestion Ticker During Live AI Analysis -->
+              <div class="live-analysis-card" id="live-analysis-card" style="display:none">
+                <div class="analysis-tip-header">
+                  <span class="live-pulse-dot"></span>
+                  <strong id="analysis-tip-headline" data-i18n="analysis_live_tip_title">🌱 Live Organic Plant Suggestion While Analyzing:</strong>
+                </div>
+                <div class="analysis-tip-message" id="analysis-tip-message">
+                  Scanning leaf stomata... Tip: Fermented sour buttermilk (खट्टी छाछ) + copper spray halts fungal spores naturally.
+                </div>
+                <div class="analysis-meter-track">
+                  <div class="analysis-meter-fill" id="analysis-meter-fill"></div>
+                </div>
+              </div>
+
+              <button class="btn btn-primary btn-block btn-scan" id="btn-run-scan" onclick="runAiDiagnosis()">
+                <i class="fa-solid fa-magnifying-glass-chart"></i> <span data-i18n="btn_run_scan">Run AI Diagnosis</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Diagnosis Result Panel -->
+          <div class="scanner-card result-panel">
+            <div class="panel-header">
+              <h3><i class="fa-solid fa-square-poll-vertical"></i> <span data-i18n="diag_panel_title">Diagnosis Assessment</span></h3>
+              <span class="step-tag" id="scan-status-tag" data-i18n="diag_status_ready">Ready to Scan</span>
+            </div>
+
+            <div id="result-placeholder" class="result-placeholder">
+              <div class="ph-icon"><i class="fa-solid fa-satellite-dish"></i></div>
+              <h4 data-i18n="no_scan_title">No Scan Run Yet</h4>
+              <p data-i18n="no_scan_desc">Upload a leaf image, use <strong>Live Camera</strong>, or pick a sample crop, then click <strong>"Run AI Diagnosis"</strong>.</p>
+            </div>
+
+            <div id="result-content" class="result-content" style="display:none">
+              <div class="result-top-badge">
+                <div class="badge-disease">
+                  <span class="d-label" data-i18n="detected_issue">Detected Issue:</span>
+                  <span class="d-name text-emerald" id="res-disease-name">Early Blight</span>
+                </div>
+                <div class="badge-confidence">
+                  <div class="gauge-ring" id="res-confidence-gauge">
+                    <span id="res-confidence-val">97.8%</span>
+                  </div>
+                  <span class="gauge-label" data-i18n="confidence_label">Confidence</span>
+                </div>
+              </div>
+
+              <div class="metrics-grid">
+                <div class="metric-box">
+                  <span class="m-label" data-i18n="severity_label">Severity Level</span>
+                  <span class="m-val severity-high" id="res-severity">High</span>
+                </div>
+                <div class="metric-box">
+                  <span class="m-label" data-i18n="chlorophyll_label">Chlorophyll Index</span>
+                  <span class="m-val" id="res-chlorophyll">84.2 SPAD</span>
+                </div>
+                <div class="metric-box">
+                  <span class="m-label" data-i18n="moisture_label">Moisture Est.</span>
+                  <span class="m-val" id="res-moisture">68%</span>
+                </div>
+              </div>
+
+              <div class="result-accordion">
+                <div class="accordion-item">
+                  <div class="acc-title"><i class="fa-solid fa-circle-exclamation text-amber"></i> <span data-i18n="root_cause_label">Root Cause</span></div>
+                  <div class="acc-body" id="res-causes">Fungal infection (Alternaria solani). Favored by humid weather and splash irrigation.</div>
+                </div>
+
+                <!-- 100% Organic Remedy & Plant Health Suggestions -->
+                <div class="organic-remedy-card">
+                  <div class="org-header-row">
+                    <div class="org-title">
+                      <i class="fa-solid fa-seedling text-emerald-glow"></i>
+                      <span data-i18n="organic_cure_label">🌱 100% Organic Remedy & Plant Health Suggestions</span>
+                    </div>
+                    <span class="org-badge"><i class="fa-solid fa-leaf"></i> <span data-i18n="organic_badge_text">100% Natural / जैविक</span></span>
+                  </div>
+                  <p class="org-subtitle" data-i18n="organic_subtitle">Natural, chemical-free herbal preparations, soil enrichment, and plant care routine.</p>
+                  <ul class="organic-list" id="res-organic-list">
+                    <!-- Populated dynamically via JS -->
+                  </ul>
+                  <div class="organic-actions-row">
+                    <button type="button" class="btn-organic-chat" id="btn-ask-chatl-organic" onclick="askChatLAboutDiagnosis()">
+                      <i class="fa-solid fa-comments"></i> <span data-i18n="btn_ask_chatl_organic">Ask ChatL for Step-by-Step Organic Recipe</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <div class="acc-title"><i class="fa-solid fa-prescription-bottle-medical text-emerald"></i> <span data-i18n="cure_label">Prescribed Chemical Treatment (Standard)</span></div>
+                  <div class="acc-body">
+                    <ul class="cure-list" id="res-cure-list">
+                      <!-- Populated via JS -->
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <div class="acc-title"><i class="fa-solid fa-shield-virus text-blue"></i> <span data-i18n="prev_label">Long-Term Prevention</span></div>
+                  <div class="acc-body">
+                    <ul class="prevention-list" id="res-prev-list">
+                      <!-- Populated via JS -->
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="result-actions">
+                <button class="btn btn-sm btn-amber-gold btn-voice-diag" id="btn-speak-diagnosis" onclick="speakCurrentDiagnosis()">
+                  <i class="fa-solid fa-volume-high"></i> <span data-i18n="btn_listen_diag">Listen to Diagnosis & Cures</span>
+                </button>
+                <button class="btn btn-sm btn-outline-emerald" onclick="escalateToRequest()">
+                  <i class="fa-solid fa-paper-plane"></i> <span data-i18n="btn_escalate_admin">Escalate to Admin</span>
+                </button>
+                <button class="btn btn-sm btn-glass" onclick="printDiagnosis()">
+                  <i class="fa-solid fa-print"></i> <span data-i18n="btn_print_diag">Print Diagnosis</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: FARM REQUESTS (USER SUBMITS & ADMIN MANAGES) -->
+    <section id="requests" class="section-padding requests-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="header-split">
+            <div>
+              <div class="section-badge"><i class="fa-solid fa-comments-dollar"></i> <span data-i18n="req_badge">CONSULTATION & INQUIRIES</span></div>
+              <h2 class="section-title" data-i18n="req_title">Farm Pro Requests & Inquiries</h2>
+              <p class="section-subtitle" data-i18n="req_subtitle">
+                Users can submit diagnosis tickets and questions. Admins have rights to review, diagnose, update status, and prescribe cures.
+              </p>
+            </div>
+            <div class="header-tools">
+              <button class="btn btn-primary" onclick="openNewRequestModal()">
+                <i class="fa-solid fa-plus"></i> <span data-i18n="btn_submit_request">Submit New Request</span>
+              </button>
+              <button class="btn btn-outline-emerald" onclick="fetchRequests(); showToast('🔄 Requests refreshed!')">
+                <i class="fa-solid fa-arrows-rotate"></i> <span data-i18n="btn_refresh">Refresh</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+          <div class="filter-tabs">
+            <button class="filter-btn active" data-filter="all" onclick="filterRequests('all')"><span data-i18n="filter_all">All Requests</span> (<span id="count-all">0</span>)</button>
+            <button class="filter-btn" data-filter="Pending" onclick="filterRequests('Pending')"><span data-i18n="filter_pending">Pending</span> (<span id="count-pending">0</span>)</button>
+            <button class="filter-btn" data-filter="In Review" onclick="filterRequests('In Review')"><span data-i18n="filter_inreview">In Review</span> (<span id="count-inreview">0</span>)</button>
+            <button class="filter-btn" data-filter="Resolved" onclick="filterRequests('Resolved')"><span data-i18n="filter_resolved">Resolved</span> (<span id="count-resolved">0</span>)</button>
+          </div>
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="request-search" placeholder="Search farmer, crop, symptoms..." data-i18n-placeholder="search_req_placeholder" oninput="handleRequestSearch()">
+          </div>
+        </div>
+
+        <!-- Requests Cards Grid -->
+        <div class="requests-grid" id="requests-container">
+          <div class="loading-state">
+            <i class="fa-solid fa-spinner fa-spin"></i> Loading requests...
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: PLANT DOCTOR & ENCYCLOPEDIA (ADMIN CAN EDIT/ADD/DELETE) -->
+    <section id="diseases" class="section-padding diseases-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="header-split">
+            <div>
+              <div class="section-badge"><i class="fa-solid fa-book-open"></i> <span data-i18n="plants_badge">KNOWLEDGE BASE</span></div>
+              <h2 class="section-title" data-i18n="plants_title">Plant Doctor Encyclopedia</h2>
+              <p class="section-subtitle" data-i18n="plants_subtitle">
+                Official FarmCare Pro diagnostic library. <span class="admin-only-inline">Admins have full rights to add, edit, or delete diseases.</span>
+              </p>
+            </div>
+            <div class="admin-tools-inline" id="admin-add-disease-btn-wrap" style="display:none">
+              <button class="btn btn-primary" onclick="openAddDiseaseModal()">
+                <i class="fa-solid fa-plus-circle"></i> <span data-i18n="btn_add_disease">Add New Disease (Admin)</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Disease Cards Grid -->
+        <div class="diseases-grid" id="diseases-container">
+          <!-- Populated via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: FERTILIZERS & WATERING GUIDES -->
+    <section id="fertilizers" class="section-padding fertilizers-section">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="section-badge"><i class="fa-solid fa-droplet"></i> PRECISION NUTRITION</div>
+          <h2 class="section-title" data-i18n="tab_fertilizers">Fertilizer & Irrigation Advisory</h2>
+          <p class="section-subtitle" data-i18n="plants_subtitle">
+            Scientific NPK dosages, timing, and watering guides customized for maximum crop yield.
+          </p>
+        </div>
+
+        <div class="tabs-container">
+          <div class="subtabs-bar">
+            <button class="subtab-btn active" onclick="switchSubTab('fertilizers-tab')"><i class="fa-solid fa-vial"></i> <span data-i18n="tab_fertilizers">Fertilizer Database</span></button>
+            <button class="subtab-btn" onclick="switchSubTab('watering-tab')"><i class="fa-solid fa-water"></i> <span data-i18n="tab_watering">Watering Schedules</span></button>
+            <button class="subtab-btn" onclick="switchSubTab('tips-tab')"><i class="fa-solid fa-lightbulb"></i> <span data-i18n="tab_tips">Agronomist Tips</span></button>
+          </div>
+
+          <div id="fertilizers-tab" class="tab-pane active">
+            <div class="fertilizers-grid" id="fertilizers-container"></div>
+          </div>
+
+          <div id="watering-tab" class="tab-pane" style="display:none">
+            <div class="watering-grid" id="watering-container"></div>
+          </div>
+
+          <div id="tips-tab" class="tab-pane" style="display:none">
+            <div class="tips-grid" id="tips-container"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: CHATL AI ASSISTANT (Powered by Lavkush) -->
+    <section id="chatl" class="section-padding chatl-section">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="section-badge"><i class="fa-solid fa-brain"></i> <span data-i18n="chatl_badge">AI AGRI ADVISOR</span></div>
+          <h2 class="section-title" data-i18n="chatl_title">ChatL AI - Powered by Lavkush</h2>
+          <p class="section-subtitle" data-i18n="chatl_subtitle">
+            Ask any question regarding crop diseases, soil nutrients, pesticides, or launch instructions.
+          </p>
+        </div>
+
+        <div class="chatl-card">
+          <div class="chatl-header">
+            <div class="chatl-bot-profile">
+              <img src="images/chatl_avatar.jpg" alt="ChatL AI Avatar" class="chatl-avatar" id="chat-avatar-img">
+              <div>
+                <div class="chatl-name"><span id="chat-persona-title">ChatL AI Assistant</span> <span class="badge-online">Online</span></div>
+                <div class="chatl-sub" id="chat-persona-sub">Smart Agriculture & Bio-Medical Engine • Powered by Lavkush</div>
+              </div>
+            </div>
+
+            <div class="chatl-header-actions">
+              <!-- Dual Persona Selector from Native App (ChatL vs ChatVLSI) -->
+              <div class="persona-switch-pill">
+                <button type="button" class="persona-tab active" id="tab-persona-chatl" onclick="setChatPersona('chatl')">
+                  <i class="fa-solid fa-seedling text-emerald"></i> <span data-i18n="tab_persona_chatl">ChatL Agri</span>
+                </button>
+                <button type="button" class="persona-tab" id="tab-persona-chatvlsi" onclick="setChatPersona('chatvlsi')">
+                  <i class="fa-solid fa-microchip text-blue"></i> <span data-i18n="tab_persona_chatvlsi">ChatVLSI 1.2</span>
+                </button>
+              </div>
+              <button type="button" class="btn-sm btn-glass btn-voice-toggle" id="btn-auto-voice" onclick="toggleAutoVoice()" title="Toggle Auto-Speaking Answers Aloud">
+                <i class="fa-solid fa-volume-high"></i> <span data-i18n="auto_voice_label">Auto-Voice:</span> <span id="auto-voice-state">ON</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="chatl-quick-prompts">
+            <button class="prompt-chip" onclick="sendChatPrompt('🌱 100% Organic remedies for Leaf Blight and plant care')" data-i18n="prompt_chip_1">🌱 Organic Blight Cure</button>
+            <button class="prompt-chip" onclick="sendChatPrompt('How to make Jeevamrutha and Neemastra step by step?')" data-i18n="prompt_chip_jeevamrut">🌿 Make Jeevamrutha</button>
+            <button class="prompt-chip" onclick="sendChatPrompt('How to treat Powdery Mildew with sour buttermilk and neem oil?')" data-i18n="prompt_chip_powdery">🥛 Buttermilk Spray</button>
+            <button class="prompt-chip" onclick="sendChatPrompt('How to prepare Agniastra and Neemastra for aphids and sucking pests?')" data-i18n="prompt_chip_pest">🐛 Organic Pest Agniastra</button>
+            <button class="prompt-chip" onclick="sendChatPrompt('Best organic fertilizer and care routine for Tomato & Chilli?')" data-i18n="prompt_chip_2">🍅 Tomato & Chilli Care</button>
+            <button class="prompt-chip" onclick="sendChatPrompt('Trichoderma bio-fungicide multiplication and root rot care')" data-i18n="prompt_chip_tricho">🔬 Trichoderma Bio-Fungicide</button>
+            <button class="prompt-chip" onclick="sendChatPrompt('What are 100% organic alternatives to chemical Urea and DAP?')" data-i18n="prompt_chip_npk">🧪 Organic NPK Alternatives</button>
+            <button class="prompt-chip" onclick="sendChatPrompt('How to run install_and_run batch file?')" data-i18n="prompt_chip_3">🚀 Run Batch App</button>
+          </div>
+
+          <div class="chatl-messages" id="chatl-messages">
+            <div class="chat-bubble bot-bubble">
+              <div class="bubble-header-row">
+                <div class="bubble-sender"><i class="fa-solid fa-robot"></i> <span class="bot-name-label">ChatL AI - 100% Organic Plant Doctor</span></div>
+                <button type="button" class="bubble-speak-btn" onclick="toggleBubbleSpeech(this)" title="Read message aloud (Voice Speaking)">
+                  <i class="fa-solid fa-volume-high"></i>
+                </button>
+              </div>
+              <div class="bubble-text" id="chatl-welcome-msg">
+                Namaste! 🌿 I am **ChatL AI**, your 100% Organic Plant Doctor and Natural Farming Advisor, trained by Lavkush for Farm Pro. How can I naturally protect your crops and garden today? Ask about botanical bio-pesticides, sour buttermilk sprays, Jeevamrutha, crop diseases, or switch above to **ChatVLSI 1.2** for hardware RTL synthesis!
+              </div>
+              <div class="bubble-time">Just now</div>
+            </div>
+          </div>
+
+          <div class="chatl-input-bar">
+            <input type="text" id="chatl-input" placeholder="Type or click mic to speak query (e.g. Tomato blight, Urea timing, Verilog)..." data-i18n-placeholder="chatl_input_placeholder" onkeypress="handleChatKeyPress(event)">
+            <button type="button" class="btn-chat-mic" id="btn-chat-mic" onclick="voiceCtrl.toggle('chatl-input', 'btn-chat-mic', sendChatMessage)" title="Speak into Microphone (Voice Input)">
+              <i class="fa-solid fa-microphone"></i>
+            </button>
+            <button class="btn btn-primary btn-send" id="btn-send-chat" onclick="sendChatMessage()">
+              <i class="fa-solid fa-paper-plane"></i> <span data-i18n="btn_send_chat">Send</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: APP LAUNCHER & BATCH FILE CONTROL -->
+    <section id="launcher" class="section-padding launcher-section">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="section-badge"><i class="fa-solid fa-terminal"></i> <span data-i18n="launcher_badge">NATIVE LAUNCHER</span></div>
+          <h2 class="section-title" data-i18n="launcher_title">Farm Pro App Launcher</h2>
+          <p class="section-subtitle" data-i18n="launcher_subtitle">
+            Connect directly to <code id="app-path-display">G:\app_developer_sonu\farming_app power by lavkush</code> and trigger the native <code>install_and_run.bat</code> launcher or download scripts.
+          </p>
+        </div>
+
+        <div class="launcher-card">
+          <div class="launcher-top-grid">
+            <div class="status-panel">
+              <div class="status-row">
+                <span class="lbl"><i class="fa-solid fa-folder-tree"></i> <span data-i18n="launcher_path_label">Target Folder:</span></span>
+                <span class="val path-text" id="launch-path-val">Checking...</span>
+              </div>
+              <div class="status-row">
+                <span class="lbl"><i class="fa-solid fa-file-code"></i> <span data-i18n="launcher_bat_label">Batch Launcher:</span></span>
+                <span class="val" id="launch-bat-val"><i class="fa-solid fa-circle-check text-emerald"></i> install_and_run.bat found</span>
+              </div>
+              <div class="status-row">
+                <span class="lbl"><i class="fa-solid fa-code"></i> Main Entry:</span>
+                <span class="val" id="launch-main-val">main.py (Ready)</span>
+              </div>
+              <div class="status-row">
+                <span class="lbl"><i class="fa-solid fa-power-off"></i> Runtime Status:</span>
+                <span class="val status-pill" id="launch-status-pill">
+                  <span class="dot yellow"></span> Standby
+                </span>
+              </div>
+            </div>
+
+            <!-- Action Controls -->
+            <div class="launcher-controls">
+              <button class="btn btn-primary btn-lg btn-glow" id="btn-launch-app" onclick="triggerAppLaunch()">
+                <i class="fa-solid fa-play"></i> <span data-i18n="btn_launch_app">Launch Farm Pro Now</span>
+              </button>
+              <button class="btn btn-danger btn-lg" id="btn-stop-app" onclick="triggerAppStop()" style="display:none">
+                <i class="fa-solid fa-stop"></i> <span data-i18n="btn_stop_app">Stop Process</span>
+              </button>
+              <a href="/api/launcher/download-bat" class="btn btn-secondary" download>
+                <i class="fa-solid fa-download"></i> Download One-Click .BAT
+              </a>
+              <button class="btn btn-glass" onclick="checkLauncherStatus()">
+                <i class="fa-solid fa-arrows-rotate"></i> Refresh State
+              </button>
+            </div>
+          </div>
+
+          <!-- Live Terminal Output Console -->
+          <div class="terminal-box">
+            <div class="terminal-header">
+              <div class="terminal-dots">
+                <span class="t-dot red"></span>
+                <span class="t-dot yellow"></span>
+                <span class="t-dot green"></span>
+              </div>
+              <span class="terminal-title">Farm Pro Process Log Console</span>
+              <button class="terminal-clear" onclick="clearLogs()"><i class="fa-solid fa-trash"></i> <span data-i18n="btn_clear_logs">Clear Output</span></button>
+            </div>
+            <pre class="terminal-output" id="terminal-output">Connecting to Farm Pro launcher log stream...</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADMIN SETTINGS & MANAGEMENT MODALS / PANELS -->
+    <div id="admin-panel-floating" class="admin-floating-panel" style="display:none">
+      <div class="floating-inner">
+        <div class="floating-badge"><i class="fa-solid fa-crown text-amber"></i> Admin Mode Enabled</div>
+        <div class="floating-desc">You have full modification rights to edit plants, resolve requests, and update settings.</div>
+        <div class="floating-buttons">
+          <button class="btn btn-sm btn-primary" onclick="openSettingsModal()"><i class="fa-solid fa-gear"></i> System Settings</button>
+          <button class="btn btn-sm btn-outline-emerald" onclick="openChangePasswordModal()"><i class="fa-solid fa-key"></i> Change Password</button>
+          <button class="btn btn-sm btn-glass" onclick="switchRole('user')"><i class="fa-solid fa-right-from-bracket"></i> Exit Admin</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- MODAL: SUBMIT NEW USER REQUEST -->
+  <div class="modal-overlay" id="modal-request" style="display:none">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-file-circle-plus text-emerald"></i> Submit Crop Consultation Request</h3>
+        <button class="modal-close" onclick="closeModal('modal-request')"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form id="form-user-request" onsubmit="submitUserRequest(event)">
+        <div class="modal-body">
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label for="req-farmer-name">Farmer / User Name *</label>
+              <input type="text" id="req-farmer-name" class="form-control" required placeholder="e.g. Ramesh Kumar">
+            </div>
+            <div class="form-group flex-1">
+              <label for="req-phone">Phone / WhatsApp *</label>
+              <input type="text" id="req-phone" class="form-control" required placeholder="e.g. +91 98765 43210">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label for="req-crop">Crop Name *</label>
+              <input type="text" id="req-crop" class="form-control" required placeholder="e.g. Tomato, Cotton, Wheat">
+            </div>
+            <div class="form-group flex-1">
+              <label for="req-variety">Variety / Hybrid (Optional)</label>
+              <input type="text" id="req-variety" class="form-control" placeholder="e.g. Hybrid Roma, Shriram 303">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="req-urgency">Urgency Level</label>
+            <select id="req-urgency" class="form-control">
+              <option value="Normal">Normal (Routine checkup)</option>
+              <option value="Medium" selected>Medium (Visible leaf damage)</option>
+              <option value="High">High (Spreading fast)</option>
+              <option value="Critical">Critical (Immediate rescue needed)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="req-symptoms">Symptoms & Problem Description *</label>
+            <textarea id="req-symptoms" class="form-control" rows="3" required placeholder="Describe yellowing, spots, insect presence, weather, or soil conditions..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Upload Leaf / Field Photo (Optional)</label>
+            <input type="file" id="req-photo" accept="image/*" class="form-control-file">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-glass" onclick="closeModal('modal-request')">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-glow" id="btn-submit-req">
+            <i class="fa-solid fa-paper-plane"></i> Submit Request
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: ADMIN EDIT / RESOLVE REQUEST -->
+  <div class="modal-overlay" id="modal-admin-request" style="display:none">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-user-doctor text-amber"></i> Admin Diagnosis & Remedy Plan</h3>
+        <button class="modal-close" onclick="closeModal('modal-admin-request')"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form id="form-admin-request" onsubmit="saveAdminRequestEdit(event)">
+        <input type="hidden" id="admin-req-id">
+        <div class="modal-body">
+          <div class="req-meta-badge" id="admin-req-meta">
+            REQ-2026-101 | Ramesh Kumar | Tomato
+          </div>
+
+          <div class="form-group">
+            <label for="admin-req-status">Update Status</label>
+            <select id="admin-req-status" class="form-control">
+              <option value="Pending">Pending Review</option>
+              <option value="In Review">In Review / Laboratory Check</option>
+              <option value="Resolved">Resolved (Diagnosis & Remedy Prescribed)</option>
+              <option value="Rejected">Rejected / Incomplete Information</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="admin-req-diagnosis">Specialist Diagnosis</label>
+            <input type="text" id="admin-req-diagnosis" class="form-control" placeholder="e.g. Alternaria Leaf Blight with Secondary Bacterial Infection">
+          </div>
+
+          <div class="form-group">
+            <label for="admin-req-remedy">Prescribed Treatment & Medicine</label>
+            <textarea id="admin-req-remedy" class="form-control" rows="4" placeholder="Step-by-step chemical dosages, spray instructions, and cultural guidelines..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="admin-req-assigned">Diagnosed By</label>
+            <input type="text" id="admin-req-assigned" class="form-control" value="Chief Agri Specialist">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-glass" onclick="closeModal('modal-admin-request')">Cancel</button>
+          <button type="button" class="btn btn-danger" onclick="deleteCurrentRequest()">
+            <i class="fa-solid fa-trash"></i> Delete
+          </button>
+          <button type="submit" class="btn btn-primary">
+            <i class="fa-solid fa-floppy-disk"></i> Save & Publish Remedy
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: ADMIN ADD / EDIT DISEASE -->
+  <div class="modal-overlay" id="modal-disease-edit" style="display:none">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="modal-disease-title"><i class="fa-solid fa-leaf text-emerald"></i> Add / Edit Disease</h3>
+        <button class="modal-close" onclick="closeModal('modal-disease-edit')"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form id="form-disease-edit" onsubmit="saveDiseaseForm(event)">
+        <input type="hidden" id="disease-edit-id">
+        <div class="modal-body">
+          <div class="form-row">
+            <div class="form-group flex-2">
+              <label for="disease-edit-name">Disease Name *</label>
+              <input type="text" id="disease-edit-name" class="form-control" required placeholder="e.g. Yellow Rust">
+            </div>
+            <div class="form-group flex-1">
+              <label for="disease-edit-severity">Severity</label>
+              <select id="disease-edit-severity" class="form-control">
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+                <option value="Critical">Critical</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="disease-edit-causes">Causes & Pathogen</label>
+            <input type="text" id="disease-edit-causes" class="form-control" placeholder="e.g. Fungal spore Puccinia striiformis">
+          </div>
+
+          <div class="form-group">
+            <label for="disease-edit-symptoms">Symptoms (One per line)</label>
+            <textarea id="disease-edit-symptoms" class="form-control" rows="3" placeholder="Yellow stripes on leaves&#10;Stunted plant height&#10;Chlorotic drying"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="disease-edit-cure">Cure & Spray Steps (One per line)</label>
+            <textarea id="disease-edit-cure" class="form-control" rows="3" placeholder="Spray Propiconazole 25% EC @ 1ml/L&#10;Apply neem oil 5ml/L for prevention&#10;Isolate affected patch"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="disease-edit-prevention">Prevention Tips (One per line)</label>
+            <textarea id="disease-edit-prevention" class="form-control" rows="2" placeholder="Plant resistant seed varieties&#10;Avoid over-irrigation"></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-glass" onclick="closeModal('modal-disease-edit')">Cancel</button>
+          <button type="submit" class="btn btn-primary">
+            <i class="fa-solid fa-floppy-disk"></i> Save Disease
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: ADMIN SYSTEM SETTINGS -->
+  <div class="modal-overlay" id="modal-settings" style="display:none">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-sliders text-amber"></i> Farm Pro System Settings</h3>
+        <button class="modal-close" onclick="closeModal('modal-settings')"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form id="form-settings" onsubmit="saveSystemSettings(event)">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="set-app-name">Application Name</label>
+            <input type="text" id="set-app-name" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="set-powered-by">Powered By Signature</label>
+            <input type="text" id="set-powered-by" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="set-announcement">Top Announcement Banner</label>
+            <textarea id="set-announcement" class="form-control" rows="2"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="set-app-path">Desktop App Path (install_and_run.bat location)</label>
+            <input type="text" id="set-app-path" class="form-control">
+          </div>
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label for="set-phone">Helpline Phone</label>
+              <input type="text" id="set-phone" class="form-control">
+            </div>
+            <div class="form-group flex-1">
+              <label for="set-email">Support Email</label>
+              <input type="email" id="set-email" class="form-control">
+            </div>
+          </div>
+
+          <!-- Dedicated Admin Security & Password Card inside Settings -->
+          <div class="settings-card-highlight">
+            <div class="settings-card-icon"><i class="fa-solid fa-shield-halved text-amber"></i></div>
+            <div style="flex:1;">
+              <h4>Admin Security & Credentials</h4>
+              <p>Default password: <strong style="color:var(--amber-gold);">admin123</strong>. Change your password or update backup mobile number.</p>
+            </div>
+            <button type="button" class="btn btn-sm btn-amber-gold" onclick="closeModal('modal-settings'); openChangePasswordModal();">
+              <i class="fa-solid fa-key"></i> Change Password
+            </button>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-glass" onclick="closeModal('modal-settings')">Cancel</button>
+          <button type="submit" class="btn btn-primary">
+            <i class="fa-solid fa-check"></i> Update Settings
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: ADMIN PASSCODE & MOBILE OTP AUTHENTICATION -->
+  <div class="modal-overlay" id="modal-admin-auth" style="display:none">
+    <div class="modal-card modal-sm">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-shield-halved text-amber"></i> Admin Security Verification</h3>
+        <button class="modal-close" onclick="closeModal('modal-admin-auth')"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <!-- Password Login View -->
+      <form id="form-admin-password" onsubmit="verifyAdminPasscode(event)">
+        <div class="modal-body">
+          <div class="auth-default-badge">
+            <div>
+              <i class="fa-solid fa-circle-info text-emerald"></i>
+              <span>Default Password: <strong>admin123</strong></span>
+            </div>
+            <button type="button" class="btn btn-sm btn-outline-warning" onclick="closeModal('modal-admin-auth'); openChangePasswordModal();">
+              <i class="fa-solid fa-key"></i> Change Password
+            </button>
+          </div>
+
+          <p class="auth-hint">Enter your admin password (default: <code>admin123</code>) to access management and edit controls.</p>
+          
+          <div class="form-group">
+            <label for="admin-pass-input">Admin Password</label>
+            <input type="password" id="admin-pass-input" class="form-control" placeholder="Enter password (default: admin123)" required autofocus>
+          </div>
+
+          <div id="auth-error-alert" class="auth-error-box" style="display:none">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <div>
+              <strong>Incorrect Password!</strong>
+              <div style="font-size:0.75rem; margin-top:2px;">Default is <code>admin123</code>. You can authenticate using backup mobile OTP below.</div>
+            </div>
+          </div>
+
+          <!-- Mobile OTP Trigger Option -->
+          <div class="otp-recovery-trigger" id="otp-recovery-box">
+            <div class="otp-hint-text">
+              <i class="fa-solid fa-mobile-screen-button text-emerald"></i>
+              <span>Backup Mobile Authentication: <strong id="auth-masked-phone">+91 89*****823</strong></span>
+            </div>
+            <button type="button" class="btn btn-sm btn-outline-emerald btn-block" onclick="requestMobileOtp()">
+              <i class="fa-solid fa-paper-plane"></i> Send OTP to Mobile
+            </button>
+          </div>
+
+          <!-- Direct Change Password Link -->
+          <div style="margin-top: 14px; text-align: center; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 12px;">
+            <button type="button" class="btn-link" style="color:var(--amber-gold); font-size:0.85rem;" onclick="closeModal('modal-admin-auth'); openChangePasswordModal();">
+              <i class="fa-solid fa-key"></i> Want to change default password (admin123)? Click here
+            </button>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-glass" onclick="closeModal('modal-admin-auth')">Cancel</button>
+          <button type="submit" class="btn btn-primary">
+            <i class="fa-solid fa-unlock"></i> Unlock Admin
+          </button>
+        </div>
+      </form>
+
+      <!-- OTP Verification View -->
+      <form id="form-admin-otp" onsubmit="submitVerifyOtp(event)" style="display:none">
+        <div class="modal-body">
+          <div class="otp-banner">
+            <i class="fa-solid fa-comment-sms text-emerald" style="font-size:2rem; margin-bottom:8px;"></i>
+            <h4>Enter 6-Digit Mobile OTP</h4>
+            <p style="font-size:0.8rem; color:var(--text-muted);">
+              An OTP code has been dispatched to <strong id="otp-phone-target">+91 89*****823</strong>.
+            </p>
+          </div>
+
+          <div class="form-group" style="text-align:center; margin:16px 0;">
+            <input type="text" id="admin-otp-input" class="form-control" maxlength="6" placeholder="• • • • • •" style="font-size:1.6rem; letter-spacing:10px; text-align:center; font-family:monospace;" required autofocus>
+          </div>
+
+          <div id="otp-demo-hint" class="otp-demo-hint" style="display:none;"></div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-glass" onclick="backToPasswordView()">Back</button>
+          <button type="submit" class="btn btn-primary btn-glow">
+            <i class="fa-solid fa-check-double"></i> Verify OTP & Unlock
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: CHANGE ADMIN PASSWORD & BACKUP MOBILE -->
+  <div class="modal-overlay" id="modal-change-password" style="display:none">
+    <div class="modal-card modal-sm">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-key text-amber"></i> Change Admin Password</h3>
+        <button class="modal-close" onclick="closeModal('modal-change-password')"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <!-- Main Change Password Form -->
+      <form id="form-change-password" onsubmit="submitChangePassword(event)">
+        <div class="modal-body">
+          <div class="auth-default-badge">
+            <div>
+              <i class="fa-solid fa-circle-info text-emerald"></i>
+              <span>Default Password: <strong>admin123</strong></span>
+            </div>
+            <span style="font-size:0.75rem; color:var(--text-muted);">(Current Default)</span>
+          </div>
+          <p class="auth-hint">Enter your default password (<code>admin123</code>) to set a new password. If wrong or forgotten, backup authentication via mobile OTP is available below.</p>
+
+          <div id="change-pass-error-alert" class="auth-error-box" style="display:none">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <div>
+              <strong id="change-pass-error-title">Incorrect Password!</strong>
+              <div id="change-pass-error-desc" style="font-size:0.75rem; margin-top:2px;">Authenticate via mobile OTP backup to update password.</div>
+            </div>
+          </div>
+
+          <div class="form-group" id="group-current-pass">
+            <label for="chg-current-pass">Current / Default Password *</label>
+            <input type="password" id="chg-current-pass" class="form-control" placeholder="Enter current password (default: admin123)" required>
+          </div>
+
+          <div class="form-group">
+            <label for="chg-new-pass">New Password *</label>
+            <input type="password" id="chg-new-pass" class="form-control" minlength="4" required placeholder="Enter new password (min 4 characters)">
+          </div>
+
+          <div class="form-group">
+            <label for="chg-confirm-pass">Confirm New Password *</label>
+            <input type="password" id="chg-confirm-pass" class="form-control" minlength="4" required placeholder="Re-type new password">
+          </div>
+
+          <div class="form-group">
+            <label for="chg-backup-phone">Backup Mobile for OTP Authentication *</label>
+            <input type="text" id="chg-backup-phone" class="form-control" placeholder="e.g. +91 8989588823" value="+91 8989588823" required>
+            <span style="font-size:0.72rem; color:var(--text-muted); margin-top:2px;">Used to receive 6-digit OTP whenever password is forgotten.</span>
+          </div>
+
+          <!-- Mobile OTP Fallback Box -->
+          <div class="otp-recovery-trigger" id="change-pass-otp-trigger">
+            <div class="otp-hint-text">
+              <i class="fa-solid fa-mobile-screen-button text-emerald"></i>
+              <span>Wrong or forgot password? Backup Mobile: <strong id="change-pass-masked-phone">+91 89*****823</strong></span>
+            </div>
+            <button type="button" class="btn btn-sm btn-outline-emerald btn-block" onclick="requestChangePassOtp()">
+              <i class="fa-solid fa-paper-plane"></i> Send OTP to Mobile
+            </button>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-glass" onclick="closeModal('modal-change-password')">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-glow">
+            <i class="fa-solid fa-floppy-disk"></i> Save New Password
+          </button>
+        </div>
+      </form>
+
+      <!-- OTP Verification View within Change Password -->
+      <form id="form-change-pass-otp" onsubmit="submitChangePassOtp(event)" style="display:none">
+        <div class="modal-body">
+          <div class="otp-banner">
+            <i class="fa-solid fa-comment-sms text-emerald" style="font-size:2rem; margin-bottom:8px;"></i>
+            <h4>Backup Mobile OTP Authentication</h4>
+            <p style="font-size:0.8rem; color:var(--text-muted);">
+              Enter 6-digit code sent to <strong id="change-pass-otp-target">+91 89*****823</strong> to authorize your new password.
+            </p>
+          </div>
+
+          <div class="form-group" style="text-align:center; margin:16px 0;">
+            <input type="text" id="change-pass-otp-input" class="form-control" maxlength="6" placeholder="• • • • • •" style="font-size:1.6rem; letter-spacing:10px; text-align:center; font-family:monospace;" required autofocus>
+          </div>
+
+          <div id="change-pass-demo-hint" class="otp-demo-hint" style="display:none;"></div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-glass" onclick="backToChangePassForm()">Back</button>
+          <button type="submit" class="btn btn-primary btn-glow">
+            <i class="fa-solid fa-check-double"></i> Verify OTP & Apply New Password
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" class="toast">
+    <i class="toast-icon fa-solid fa-circle-check"></i>
+    <span id="toast-message">Action successful!</span>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="main-footer">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <div class="brand-title">
+          <span class="title-farm">Farm</span><span class="title-pro">Pro</span>
+        </div>
+        <p class="footer-sub">Smart Agriculture Ecosystem & AI Plant Health Assistant</p>
+        <p class="footer-credit">
+          Designed & Powered by <strong id="footer-powered-by">Lavkush</strong> • 
+          <a href="https://lav-tech.blogspot.com" target="_blank" class="footer-blog-link">
+            <i class="fa-solid fa-globe"></i> lav-tech.blogspot.com
+          </a>
+        </p>
+      </div>
+      <div class="footer-links">
+        <a href="#hero">Home</a>
+        <a href="#scanner">AI Scanner</a>
+        <a href="#requests">Requests</a>
+        <a href="#diseases">Encyclopedia</a>
+        <a href="#launcher">Native App Launcher</a>
+        <a href="https://lav-tech.blogspot.com" target="_blank" style="color:var(--amber-gold)"><i class="fa-solid fa-arrow-up-right-from-square"></i> Lav-Tech Portal</a>
+      </div>
+      <div class="footer-copy">
+        &copy; 2026 Farm Pro. All Rights Reserved. Built for Indian Farmers & Global Agriculture.
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/translations.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,804 @@
+{
+  "settings": {
+    "appName": "Farm Pro",
+    "tagline": "Smart Farming & Plant Health Assistant",
+    "poweredBy": "Lavkush",
+    "announcement": "🌾 Welcome to Farm Pro Web Portal! AI Plant Scanner and Live Consultation now online. Double-click install_and_run.bat or launch below for native desktop/mobile app.",
+    "contactPhone": "+91 98765 43210",
+    "contactEmail": "lavkush.farmpro@agritech.in",
+    "appPath": "G:\\app_developer_sonu\\farming_app power by lavkush",
+    "allowPublicRegistration": true,
+    "autoAiTriage": true,
+    "creatorBlog": "https://lav-tech.blogspot.com",
+    "adminPassword": "admin123",
+    "adminMobile": "+91 8989588823"
+  },
+  "diseases": [
+    {
+      "id": "leaf_blight",
+      "name": "Leaf Blight",
+      "severity": "High",
+      "symptoms": [
+        "Brown or tan spots on leaves",
+        "Wilting and yellowing of leaf edges",
+        "Rapid spread in humid conditions"
+      ],
+      "causes": "Fungal infection (Alternaria, Helminthosporium)",
+      "cure": [
+        "Remove and destroy infected leaves immediately",
+        "Apply copper-based fungicide (2g per liter water)",
+        "Spray Mancozeb 75% WP at 2.5g per liter",
+        "Improve air circulation around plants",
+        "Avoid overhead watering"
+      ],
+      "organicRemedies": [
+        "Sour Buttermilk Spray (खट्टी छाछ): Dilute 50ml fermented sour buttermilk (kept 4 days in copper vessel) in 1L water; spray weekly. Natural lactic acid arrests blight fungi.",
+        "Cold-Pressed Neem Oil (5ml/L) emulsified with 2ml natural liquid soap; spray every 5-7 days in late evening.",
+        "Trichoderma harzianum bio-fungicide (5g/L) root drench to stop soil-borne fungal spore progression.",
+        "Organic Soil Boost: Mix 250g Vermicompost + 50g Neem cake powder at base to build natural systemic resistance."
+      ],
+      "plantCareSuggestions": [
+        "Sanitary Pruning: Prune infected bottom 6 inches of leaves to break fungal splash cycle.",
+        "Irrigate strictly at root level early morning; keep leaves dry.",
+        "Apply 2-3 inch dry straw or biomass mulch over soil to prevent spore splash during rains."
+      ],
+      "prevention": [
+        "Use disease-resistant varieties",
+        "Practice crop rotation every season",
+        "Maintain proper plant spacing",
+        "Apply preventive fungicide sprays"
+      ],
+      "icon": "leaf",
+      "color": "#E74C3C"
+    },
+    {
+      "id": "powdery_mildew",
+      "name": "Powdery Mildew",
+      "severity": "Medium",
+      "symptoms": [
+        "White powdery coating on leaves",
+        "Leaf curling and distortion",
+        "Stunted growth of new shoots"
+      ],
+      "causes": "Fungal infection (Erysiphe, Podosphaera)",
+      "cure": [
+        "Spray neem oil solution (5ml per liter water)",
+        "Apply sulfur-based fungicide",
+        "Use baking soda spray (1 tbsp per gallon water)",
+        "Apply Karathane 0.05% spray",
+        "Remove severely infected parts"
+      ],
+      "organicRemedies": [
+        "Baking Soda & Neem Foliar Spray: Dissolve 5g sodium bicarbonate (मीठा सोडा) + 5ml pure neem oil in 1L water; disrupts fungal spore membranes.",
+        "Raw Cow Milk Solution: 1 part milk to 9 parts water; sunlight activates natural antiseptic lactoferrin enzymes.",
+        "Wood Ash (लकड़ी की राख): Sift dry wood ash and lightly dust onto damp foliage early morning to create an alkaline barrier hostile to fungal germination.",
+        "Panchagavya Foliar Spray (30ml/L) to strengthen leaf cuticles and boost photosynthetic activity."
+      ],
+      "plantCareSuggestions": [
+        "Ensure 6-8 hours of direct sunlight daily and avoid shaded, humid pockets.",
+        "Prune dense inner foliage to provide continuous air circulation through the plant canopy.",
+        "Avoid excess synthetic nitrogen fertilizers which cause soft, succulent leaves vulnerable to mildew."
+      ],
+      "prevention": [
+        "Ensure adequate sunlight exposure",
+        "Maintain good air circulation",
+        "Avoid excessive nitrogen fertilizer",
+        "Water at the base, not on foliage"
+      ],
+      "icon": "weather-fog",
+      "color": "#F39C12"
+    },
+    {
+      "id": "root_rot",
+      "name": "Root Rot",
+      "severity": "Critical",
+      "symptoms": [
+        "Wilting despite adequate watering",
+        "Yellowing and dropping of lower leaves",
+        "Brown/black mushy roots",
+        "Foul smell from soil"
+      ],
+      "causes": "Overwatering and poor drainage (Pythium, Phytophthora fungi)",
+      "cure": [
+        "Stop watering immediately and let soil dry",
+        "Remove plant, trim rotten roots with sterile scissors",
+        "Apply Trichoderma viride to soil (5g per kg soil)",
+        "Repot in fresh, well-draining soil mix",
+        "Apply systemic fungicide (Metalaxyl 8% WP)"
+      ],
+      "organicRemedies": [
+        "Trichoderma viride Bio-Fungicide: Inoculate 10g Trichoderma per plant into moist vermicompost, apply into topsoil around root zone.",
+        "Cow Urine & Turmeric Drench: Mix 100ml fresh cow urine + 10g pure turmeric powder in 2L water; drench soil around infected roots.",
+        "Wood Charcoal & Sand Mix: Blend powdered charcoal and coarse river sand into root perimeter to absorb stagnant toxins and aerate.",
+        "Pseudomonas fluorescens biological soil treatment (10ml/L) to colonize roots and suppress Pythium."
+      ],
+      "plantCareSuggestions": [
+        "Immediately withhold watering until top 2-3 inches of soil completely dry out.",
+        "Improve bed drainage by adding raised beds or drilling larger container drainage holes.",
+        "Gently aerate root zone soil with a hand fork to introduce oxygen to suffocating roots."
+      ],
+      "prevention": [
+        "Use well-draining soil mix",
+        "Water only when top inch of soil is dry",
+        "Ensure pots have drainage holes",
+        "Add perlite or sand to heavy soils"
+      ],
+      "icon": "tree",
+      "color": "#C0392B"
+    },
+    {
+      "id": "nitrogen_deficiency",
+      "name": "Nitrogen Deficiency",
+      "severity": "Medium",
+      "symptoms": [
+        "Pale green to yellow leaves (starting from older leaves)",
+        "Stunted plant growth",
+        "Thin and weak stems",
+        "Reduced flowering and fruiting"
+      ],
+      "causes": "Insufficient nitrogen in soil, leaching from heavy rain",
+      "cure": [
+        "Apply urea fertilizer (46-0-0) at 2-3g per plant",
+        "Use ammonium sulfate for quick nitrogen boost",
+        "Apply vermicompost (200g per plant)",
+        "Foliar spray of 2% urea solution",
+        "Add composted manure around the base"
+      ],
+      "organicRemedies": [
+        "Liquid Jeevamrutha (तरल जीवामृत): Apply 10% solution directly to root zone to trigger rapid nitrogen-fixing microbial blooms.",
+        "Mustard Cake Liquid Fertilizer (सरसों की खली की चाय): Soak 250g mustard cake in 5L water for 4 days, dilute 1:10 and drench soil.",
+        "Vermicompost Top-Dressing: Spread 300g worm-castings enriched with Azotobacter bio-fertilizer per plant.",
+        "Compost Tea Foliar Spray: Brew well-aerated compost tea and spray on leaves for fast foliar nitrogen uptake."
+      ],
+      "plantCareSuggestions": [
+        "Intercrop with nitrogen-fixing legumes (beans, cowpea, clover) to biologically fix atmospheric nitrogen.",
+        "Apply thick organic mulch (dry leaves/compost) to prevent nitrogen leaching during irrigation."
+      ],
+      "prevention": [
+        "Regular soil testing every season",
+        "Use balanced NPK fertilizer monthly",
+        "Grow nitrogen-fixing cover crops (legumes)",
+        "Mulch to prevent nitrogen leaching"
+      ],
+      "icon": "flask",
+      "color": "#3498DB"
+    },
+    {
+      "id": "phosphorus_deficiency",
+      "name": "Phosphorus Deficiency",
+      "severity": "Medium",
+      "symptoms": [
+        "Purple or reddish discoloration on leaves",
+        "Dark green older leaves",
+        "Poor root development",
+        "Delayed maturity and reduced yields"
+      ],
+      "causes": "Low phosphorus in soil, acidic or cold soils",
+      "cure": [
+        "Apply Single Super Phosphate (SSP) at 5g per plant",
+        "Use bone meal (1 tablespoon per plant)",
+        "Apply DAP (Di-Ammonium Phosphate) at 3g per plant",
+        "Add rock phosphate for slow release",
+        "Adjust soil pH to 6.0-7.0 range"
+      ],
+      "organicRemedies": [
+        "Steamed Bone Meal: Apply 2 tablespoons (30g) bone meal into root zone for slow, natural phosphorus release.",
+        "Rock Phosphate & PSB (Phosphate Solubilizing Bacteria): Mix 20g rock phosphate + 5g PSB per plant in compost.",
+        "Banana Peel & Wood Ash Compost: Fermented banana peel tea provides readily bioavailable natural phosphorus."
+      ],
+      "plantCareSuggestions": [
+        "Maintain soil pH in the sweet spot of 6.2 - 6.8 so native phosphorus doesn't get chemically locked up.",
+        "Ensure soil warmth and aeration; cold, compacted soil inhibits root phosphorus absorption."
+      ],
+      "prevention": [
+        "Maintain soil pH between 6.0-7.0",
+        "Add organic matter regularly",
+        "Use mycorrhizal fungi inoculants",
+        "Test soil before planting season"
+      ],
+      "icon": "atom",
+      "color": "#9B59B6"
+    },
+    {
+      "id": "potassium_deficiency",
+      "name": "Potassium Deficiency",
+      "severity": "Medium",
+      "symptoms": [
+        "Browning and scorching of leaf margins",
+        "Weak stems prone to breaking",
+        "Poor fruit quality and small size",
+        "Increased susceptibility to diseases"
+      ],
+      "causes": "Sandy or light soils, heavy rainfall leaching",
+      "cure": [
+        "Apply Muriate of Potash (MOP) at 3g per plant",
+        "Use Sulfate of Potash (SOP) for sensitive crops",
+        "Add wood ash around plants (handful per plant)",
+        "Banana peel fertilizer (dried and powdered)",
+        "Foliar spray of 1% KCl solution"
+      ],
+      "organicRemedies": [
+        "Wood Ash (लकड़ी की राख): Sprinkle 1 handful of hardwood ash around base (contains 5-7% natural bio-potash).",
+        "Fermented Banana Peel Extract: Soak 4-5 banana peels in 2L water for 72 hours; use liquid as high-potash root drench.",
+        "KMB (Potash Mobilizing Bacteria): Inoculate soil with KMB bio-fertilizer to solubilize insoluble soil potassium."
+      ],
+      "plantCareSuggestions": [
+        "Mulch heavily with dry biomass to minimize potassium leaching.",
+        "Water evenly to allow steady nutrient uptake without drying stress."
+      ],
+      "prevention": [
+        "Regular potassium supplementation",
+        "Add compost rich in potassium",
+        "Mulch to reduce leaching",
+        "Avoid excessive nitrogen application"
+      ],
+      "icon": "fire",
+      "color": "#E67E22"
+    },
+    {
+      "id": "pest_aphids",
+      "name": "Aphid Infestation",
+      "severity": "Medium",
+      "symptoms": [
+        "Clusters of small green/black insects on stems",
+        "Sticky honeydew on leaves",
+        "Curled and distorted new growth",
+        "Black sooty mold on leaf surface"
+      ],
+      "causes": "Aphid insects (Aphis spp.), attracted by tender growth",
+      "cure": [
+        "Spray neem oil (5ml per liter water) every 7 days",
+        "Release ladybugs (natural predators)",
+        "Strong water spray to dislodge aphids",
+        "Apply insecticidal soap spray",
+        "Spray Imidacloprid 17.8% SL (0.5ml per liter)"
+      ],
+      "organicRemedies": [
+        "Dashparni Ark (दशपर्णी अर्क) / Herbal Concoction: Spray 20ml per liter water; repels aphids and sucking pests instantly.",
+        "Garlic-Chilli-Soap Spray (अग्न्यास्त्र): Boil crushed garlic and pungent hot green chilies with water, add 2 drops soap, spray underside.",
+        "5% Neem Seed Kernel Extract (NSKE): Wash underside of leaves thoroughly where aphids colonize.",
+        "Yellow Sticky Traps: Hang yellow sheets coated with castor oil at crop canopy height."
+      ],
+      "plantCareSuggestions": [
+        "Companion planting: Plant French Marigold (गेंदा), Sweet Basil, and Coriander around boundaries to repel pests and attract ladybugs.",
+        "Blast underside of leaves with a firm water spray to dislodge nymphs mechanically."
+      ],
+      "prevention": [
+        "Companion planting with marigolds/basil",
+        "Encourage beneficial insects",
+        "Remove weeds around plants",
+        "Avoid excess nitrogen (causes soft growth)"
+      ],
+      "icon": "bug",
+      "color": "#27AE60"
+    },
+    {
+      "id": "overwatering",
+      "name": "Overwatering Stress",
+      "severity": "High",
+      "symptoms": [
+        "Soft and limp leaves",
+        "Yellowing of leaves starting from bottom",
+        "Edema (blisters on leaves)",
+        "Mold or algae on soil surface"
+      ],
+      "causes": "Excessive watering, poor drainage",
+      "cure": [
+        "Stop watering and let soil dry completely",
+        "Move plant to a well-ventilated area",
+        "Remove standing water from saucers",
+        "If severe, repot in dry soil",
+        "Add perlite to improve drainage"
+      ],
+      "organicRemedies": [
+        "Topsoil Aeration & Dry Wood Ash: Lightly cultivate topsoil and dust with wood ash to absorb excess surface moisture.",
+        "Apply Mycorrhizal fungi (VAM) to rejuvenate damaged root hair absorption capacity."
+      ],
+      "plantCareSuggestions": [
+        "Never water on a fixed calendar; always check soil 2 inches below surface before watering.",
+        "Ensure containers have unblocked drain holes and elevate pots off saucers."
+      ],
+      "prevention": [
+        "Check soil moisture before watering",
+        "Use the finger test (dry 1 inch = water)",
+        "Ensure drainage holes in all containers",
+        "Use moisture meter for accuracy"
+      ],
+      "icon": "water-alert",
+      "color": "#2980B9"
+    },
+    {
+      "id": "sunburn",
+      "name": "Sunburn / Heat Stress",
+      "severity": "Low",
+      "symptoms": [
+        "White or bleached patches on leaves",
+        "Crispy brown edges",
+        "Wilting during hottest part of day",
+        "Dry and papery leaf texture"
+      ],
+      "causes": "Excessive direct sunlight, sudden exposure change",
+      "cure": [
+        "Move plant to partial shade immediately",
+        "Use shade cloth (30-50% shade)",
+        "Water deeply in early morning",
+        "Apply mulch to keep roots cool",
+        "Remove severely damaged leaves"
+      ],
+      "organicRemedies": [
+        "Seaweed Extract (2ml/L) foliar spray in the evening to stimulate anti-stress phyto-hormones.",
+        "Aloe Vera & Water foliar wash: 50ml fresh aloe gel blended in 1L water creates a soothing protective bio-layer."
+      ],
+      "plantCareSuggestions": [
+        "Erect 50% green agro-shade netting over sensitive plants during peak hours (11 AM - 3 PM).",
+        "Mulch generously around base with dry hay to keep root rhizosphere cool."
+      ],
+      "prevention": [
+        "Gradually acclimate plants to sunlight",
+        "Provide afternoon shade in summer",
+        "Mulch around plant base (3-4 inches)",
+        "Water consistently during heat waves"
+      ],
+      "icon": "white-balance-sunny",
+      "color": "#F1C40F"
+    },
+    {
+      "id": "bacterial_wilt",
+      "name": "Bacterial Wilt",
+      "severity": "Critical",
+      "symptoms": [
+        "Sudden wilting of entire plant",
+        "Leaves remain green while wilting",
+        "Brown discoloration in stem vascular tissue",
+        "Slimy bacterial ooze when stem is cut"
+      ],
+      "causes": "Ralstonia solanacearum bacteria, spread by soil and water",
+      "cure": [
+        "Remove and destroy infected plants immediately",
+        "Do NOT compost infected material",
+        "Solarize soil for 4-6 weeks before replanting",
+        "Apply Streptocycline 500ppm to remaining plants",
+        "Drench soil with Bleaching powder (10g per liter)"
+      ],
+      "organicRemedies": [
+        "Pseudomonas fluorescens Bio-Pesticide (10g/L): Drench root zones of all neighboring plants to build antagonistic biological barrier against Ralstonia.",
+        "Turmeric & Fermented Cow Urine Drench: 200ml cow urine + 15g pure raw turmeric powder in 2L water; acts as a powerful natural bactericide.",
+        "Neem Cake Soil Application: Work 100g neem cake powder per plant into soil to suppress bacterial populations.",
+        "Bio-Solarization: Solarize bed with clear polythene mulch during peak summer for 4-6 weeks to sanitize topsoil naturally."
+      ],
+      "plantCareSuggestions": [
+        "Immediately rogue out and safely incinerate wilting plants; do not allow wash water to touch neighboring plants.",
+        "Sterilize pruning knives and tools with 70% alcohol or boiling water after every cut.",
+        "Practice strict 3-year crop rotation with non-host crops like corn or sorghum."
+      ],
+      "prevention": [
+        "Use resistant varieties",
+        "Practice 3-year crop rotation",
+        "Maintain proper drainage",
+        "Sterilize tools between plants"
+      ],
+      "icon": "bacteria",
+      "color": "#8E44AD"
+    }
+  ],
+  "fertilizers": [
+    {
+      "id": "urea",
+      "name": "Urea (46-0-0)",
+      "type": "Nitrogen",
+      "npk": "46-0-0",
+      "usage": "Top dressing for leafy growth",
+      "dosage": "2-3g per plant or 100kg per hectare",
+      "when": "During vegetative growth phase",
+      "frequency": "Every 3-4 weeks",
+      "best_for": [
+        "Rice",
+        "Wheat",
+        "Corn",
+        "Leafy vegetables"
+      ],
+      "caution": "Avoid excess – can burn roots. Don't apply on wet foliage.",
+      "icon": "grain",
+      "color": "#2ECC71"
+    },
+    {
+      "id": "dap",
+      "name": "DAP (18-46-0)",
+      "type": "Phosphorus + Nitrogen",
+      "npk": "18-46-0",
+      "usage": "Basal application for root development",
+      "dosage": "3-5g per plant or 100kg per hectare",
+      "when": "At sowing/transplanting time",
+      "frequency": "Once per crop cycle",
+      "best_for": [
+        "Tomato",
+        "Brinjal",
+        "Chili",
+        "All crops at planting"
+      ],
+      "caution": "Keep away from direct seed contact.",
+      "icon": "seed",
+      "color": "#3498DB"
+    },
+    {
+      "id": "mop",
+      "name": "MOP (0-0-60)",
+      "type": "Potassium",
+      "npk": "0-0-60",
+      "usage": "Improve fruit quality and disease resistance",
+      "dosage": "2-3g per plant or 80kg per hectare",
+      "when": "During flowering and fruiting stage",
+      "frequency": "2-3 times per season",
+      "best_for": [
+        "Banana",
+        "Potato",
+        "Sugarcane",
+        "Fruit crops"
+      ],
+      "caution": "Avoid in saline soils. Don't mix with urea.",
+      "icon": "fruit-citrus",
+      "color": "#E67E22"
+    },
+    {
+      "id": "npk_complex",
+      "name": "NPK Complex (19-19-19)",
+      "type": "Balanced",
+      "npk": "19-19-19",
+      "usage": "All-purpose balanced nutrition",
+      "dosage": "3-5g per liter water (foliar) or 5g per plant",
+      "when": "Throughout growing season",
+      "frequency": "Every 15-20 days",
+      "best_for": [
+        "All vegetables",
+        "Flowers",
+        "Fruit trees"
+      ],
+      "caution": "Don't apply during extreme heat.",
+      "icon": "flask-round-bottom",
+      "color": "#1ABC9C"
+    },
+    {
+      "id": "vermicompost",
+      "name": "Vermicompost (Organic)",
+      "type": "Organic",
+      "npk": "1.5-0.5-0.8 (approx)",
+      "usage": "Soil enrichment and microbial activity",
+      "dosage": "200-500g per plant or 5 tons per hectare",
+      "when": "Before planting and as mulch",
+      "frequency": "Every 30-45 days",
+      "best_for": [
+        "All crops",
+        "Organic farming"
+      ],
+      "caution": "Ensure it's fully decomposed. No overuse issues.",
+      "icon": "compost",
+      "color": "#795548"
+    },
+    {
+      "id": "neem_cake",
+      "name": "Neem Cake (Organic)",
+      "type": "Organic + Pest control",
+      "npk": "5-1-2 (approx)",
+      "usage": "Soil treatment and pest deterrent",
+      "dosage": "100-200g per plant or 250kg per hectare",
+      "when": "Before planting or during soil preparation",
+      "frequency": "Once per crop season",
+      "best_for": [
+        "Vegetables",
+        "Fruit trees",
+        "Sugarcane"
+      ],
+      "caution": "Allow 7 days before sowing after application.",
+      "icon": "leaf",
+      "color": "#4CAF50"
+    },
+    {
+      "id": "bone_meal",
+      "name": "Bone Meal (Organic)",
+      "type": "Phosphorus (Organic)",
+      "npk": "3-15-0",
+      "usage": "Root development and flowering boost",
+      "dosage": "1-2 tablespoons per plant",
+      "when": "At planting time",
+      "frequency": "Once per season",
+      "best_for": [
+        "Roses",
+        "Bulbs",
+        "Root vegetables",
+        "Fruit trees"
+      ],
+      "caution": "Slow release – takes weeks to show results.",
+      "icon": "bone",
+      "color": "#BCAAA4"
+    },
+    {
+      "id": "seaweed_extract",
+      "name": "Seaweed Extract",
+      "type": "Bio-stimulant",
+      "npk": "1-0.5-2.5",
+      "usage": "Growth promotion and stress tolerance",
+      "dosage": "2-3ml per liter water (foliar spray)",
+      "when": "During active growth and stress periods",
+      "frequency": "Every 10-15 days",
+      "best_for": [
+        "All crops",
+        "Stressed plants",
+        "Transplants"
+      ],
+      "caution": "Non-toxic and safe for all crops.",
+      "icon": "waves",
+      "color": "#00897B"
+    }
+  ],
+  "wateringGuide": [
+    {
+      "id": "vegetables",
+      "name": "Vegetables",
+      "frequency": "Daily or every other day",
+      "amount": "1-2 inches per week",
+      "best_time": "Early morning (6-8 AM)",
+      "method": "Drip irrigation or base watering",
+      "tips": [
+        "Water at the base, not on leaves",
+        "Mulch to retain soil moisture",
+        "Increase watering during flowering & fruiting",
+        "Reduce in cloudy/rainy weather"
+      ],
+      "crops": [
+        "Tomato",
+        "Chili",
+        "Brinjal",
+        "Okra",
+        "Beans"
+      ],
+      "icon": "food-apple",
+      "color": "#E74C3C"
+    },
+    {
+      "id": "leafy_greens",
+      "name": "Leafy Greens",
+      "frequency": "Daily in summer, every 2 days in winter",
+      "amount": "0.5-1 inch per week",
+      "best_time": "Early morning",
+      "method": "Sprinkler or light overhead watering",
+      "tips": [
+        "Keep soil consistently moist but not soggy",
+        "Shallow roots need frequent light watering",
+        "Use shade nets in extreme heat",
+        "Harvest early morning for best freshness"
+      ],
+      "crops": [
+        "Spinach",
+        "Lettuce",
+        "Coriander",
+        "Mint",
+        "Methi"
+      ],
+      "icon": "leaf",
+      "color": "#27AE60"
+    },
+    {
+      "id": "fruit_trees",
+      "name": "Fruit Trees",
+      "frequency": "2-3 times per week (deep watering)",
+      "amount": "3-5 inches per week",
+      "best_time": "Early morning or late evening",
+      "method": "Basin irrigation or drip system",
+      "tips": [
+        "Deep water to encourage deep root growth",
+        "Reduce watering during dormant season",
+        "Increase during flowering and fruit set",
+        "Mulch with organic material (4 inches)"
+      ],
+      "crops": [
+        "Mango",
+        "Guava",
+        "Papaya",
+        "Citrus",
+        "Banana"
+      ],
+      "icon": "tree",
+      "color": "#F39C12"
+    },
+    {
+      "id": "grains",
+      "name": "Grains & Cereals",
+      "frequency": "Depends on stage (see tips)",
+      "amount": "Variable by growth stage",
+      "best_time": "Morning or as per irrigation schedule",
+      "method": "Flood, furrow, or sprinkler irrigation",
+      "tips": [
+        "Rice: Maintain 2-5cm standing water during growth",
+        "Wheat: 4-6 irrigations at critical stages",
+        "Corn: Critical watering at tasseling stage",
+        "Avoid water stress during grain filling"
+      ],
+      "crops": [
+        "Rice",
+        "Wheat",
+        "Corn",
+        "Barley",
+        "Millet"
+      ],
+      "icon": "grain",
+      "color": "#D4AC0D"
+    },
+    {
+      "id": "flowers",
+      "name": "Flowers & Ornamentals",
+      "frequency": "Every 1-2 days",
+      "amount": "1 inch per week",
+      "best_time": "Early morning",
+      "method": "Drip or hand watering at base",
+      "tips": [
+        "Avoid wetting flower petals",
+        "Roses need deep weekly watering",
+        "Marigolds are drought tolerant once established",
+        "Group plants by water needs"
+      ],
+      "crops": [
+        "Rose",
+        "Marigold",
+        "Jasmine",
+        "Hibiscus",
+        "Sunflower"
+      ],
+      "icon": "flower",
+      "color": "#E91E63"
+    }
+  ],
+  "tips": [
+    {
+      "id": "tip_1",
+      "title": "🌱 Soil Preparation",
+      "tip": "Test soil pH before planting. Most vegetables prefer pH 6.0-7.0. Add lime for acidic soil, sulfur for alkaline soil.",
+      "category": "Soil",
+      "icon": "shovel"
+    },
+    {
+      "id": "tip_2",
+      "title": "🌿 Companion Planting",
+      "tip": "Plant basil near tomatoes to repel pests. Marigolds near vegetables deter aphids and whiteflies naturally.",
+      "category": "Planting",
+      "icon": "flower"
+    },
+    {
+      "id": "tip_3",
+      "title": "💧 Watering Wisdom",
+      "tip": "Water deeply but less frequently to encourage deep root growth. Morning watering is best to reduce disease risk.",
+      "category": "Watering",
+      "icon": "water"
+    },
+    {
+      "id": "tip_4",
+      "title": "🐛 Natural Pest Control",
+      "tip": "Spray neem oil (5ml/L water) every 7-10 days as a preventive measure. It's safe and effective against most pests.",
+      "category": "Pest Control",
+      "icon": "bug"
+    },
+    {
+      "id": "tip_5",
+      "title": "🌾 Crop Rotation",
+      "tip": "Rotate crops every season: Root crops → Leafy crops → Fruiting crops → Legumes. This prevents soil depletion.",
+      "category": "Planning",
+      "icon": "rotate-3d"
+    },
+    {
+      "id": "tip_6",
+      "title": "🧪 Organic Composting",
+      "tip": "Create compost from kitchen waste: peels, tea leaves, eggshells. Mix with dry leaves. Ready in 45-60 days.",
+      "category": "Organic",
+      "icon": "compost"
+    },
+    {
+      "id": "tip_7",
+      "title": "✂️ Pruning Technique",
+      "tip": "Prune dead/diseased branches at a 45° angle. Sterilize cutting tools with rubbing alcohol between cuts.",
+      "category": "Maintenance",
+      "icon": "content-cut"
+    },
+    {
+      "id": "tip_8",
+      "title": "🌡️ Temperature Care",
+      "tip": "Protect seedlings from extreme heat with shade nets (30-50%). In winter, use mulch to insulate roots.",
+      "category": "Climate",
+      "icon": "thermometer"
+    },
+    {
+      "id": "tip_9",
+      "title": "🌻 Sunlight Needs",
+      "tip": "Most vegetables need 6-8 hours of direct sunlight. Leafy greens can tolerate partial shade (4-6 hours).",
+      "category": "Light",
+      "icon": "white-balance-sunny"
+    },
+    {
+      "id": "tip_10",
+      "title": "🪴 Mulching Benefits",
+      "tip": "Apply 3-4 inches of organic mulch (straw, leaves). Retains moisture, suppresses weeds, and adds nutrients.",
+      "category": "Soil",
+      "icon": "grass"
+    },
+    {
+      "id": "tip_11",
+      "title": "🧬 Seed Selection",
+      "tip": "Choose disease-resistant varieties for your region. Treat seeds with Trichoderma before sowing for better germination.",
+      "category": "Seeds",
+      "icon": "seed"
+    },
+    {
+      "id": "tip_12",
+      "title": "📅 Seasonal Planting",
+      "tip": "Kharif (June-Oct): Rice, Cotton, Soybean. Rabi (Oct-Mar): Wheat, Mustard, Peas. Zaid (Mar-Jun): Watermelon, Cucumber.",
+      "category": "Planning",
+      "icon": "calendar"
+    },
+    {
+      "id": "tip_13",
+      "title": "🔬 Soil Testing",
+      "tip": "Test soil every 6 months for NPK, pH, and organic content. Contact your nearest agriculture office for free testing.",
+      "category": "Soil",
+      "icon": "test-tube"
+    },
+    {
+      "id": "tip_14",
+      "title": "💪 Plant Immunity",
+      "tip": "Spray Pseudomonas fluorescens (10g/L) to boost plant immunity. Apply Trichoderma viride to soil for root protection.",
+      "category": "Health",
+      "icon": "shield-check"
+    },
+    {
+      "id": "tip_15",
+      "title": "🍃 Micronutrients",
+      "tip": "Yellowing between leaf veins = Iron/Magnesium deficiency. Spray micronutrient mixture (2g/L) every 15 days.",
+      "category": "Nutrition",
+      "icon": "leaf"
+    }
+  ],
+  "requests": [
+    {
+      "id": "REQ-2026-101",
+      "farmerName": "Ramesh Kumar",
+      "phone": "+91 98234 56789",
+      "crop": "Tomato (Solanum lycopersicum)",
+      "variety": "Hybrid Roma",
+      "urgency": "High",
+      "symptoms": "Lower leaves showing brown concentric circular spots with yellow halos. Spreading rapidly after heavy monsoon rain.",
+      "status": "Resolved",
+      "submittedAt": "2026-10-28 09:30 AM",
+      "image": "/images/sample_tomato_blight.jpg",
+      "adminDiagnosis": "Early Blight (Alternaria solani)",
+      "adminRemedy": "1. Remove and bury severely infected lower leaves.\n2. Spray Mancozeb 75% WP @ 2.5g/L water.\n3. Increase spacing and mulch around plant base to prevent soil splash.",
+      "assignedBy": "Chief Agri Specialist"
+    },
+    {
+      "id": "REQ-2026-102",
+      "farmerName": "Sunita Devi",
+      "phone": "+91 94123 78901",
+      "crop": "Wheat (Triticum aestivum)",
+      "variety": "PBW-343",
+      "urgency": "Medium",
+      "symptoms": "Upper leaf tips turning pale yellow, stunted tillering, leaves are thin and upright.",
+      "status": "In Review",
+      "submittedAt": "2026-10-29 11:15 AM",
+      "image": "",
+      "adminDiagnosis": "Suspected Nitrogen Deficiency",
+      "adminRemedy": "Recommended top-dressing with Urea @ 25 kg/acre after first irrigation.",
+      "assignedBy": "Agri Specialist"
+    },
+    {
+      "id": "REQ-2026-103",
+      "farmerName": "Balram Singh",
+      "phone": "+91 91987 65432",
+      "crop": "Cotton",
+      "variety": "Bt Cotton 2",
+      "urgency": "Critical",
+      "symptoms": "Curling leaves, sticky honeydew on foliage, clusters of tiny green insects under leaves.",
+      "status": "Pending",
+      "submittedAt": "2026-10-29 03:40 PM",
+      "image": "",
+      "adminDiagnosis": "",
+      "adminRemedy": "",
+      "assignedBy": ""
+    }
+  ]
+}
